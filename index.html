@@ -1,101 +1,286 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Week 2 Reflection - Xiang Wang</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 2 Reflection - Xiang Wang</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #30264c;
+      --muted: #56496e;
+      --line: #d9c9ee;
+      --paper: #fffaff;
+      font-family: Verdana, Geneva, sans-serif;
+      scroll-padding-top: 5.5rem;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background-color: #f8f3ff;
+      background-image: radial-gradient(#d9c9ee 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #6d43a3; outline-offset: 4px; }
+    .shell { width: min(70rem, 100% - 2rem); margin-inline: auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #fffaff;
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar {
+      min-height: 4.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { font-weight: 700; text-decoration: none; }
+    .brand span { margin-right: .5rem; color: #7750a3; }
+    .site-menu { position: relative; }
+    .site-menu summary {
+      cursor: pointer;
+      border: 1px solid #cbb3e5;
+      border-radius: 999px;
+      padding: .55rem .95rem;
+      background: linear-gradient(#fff, #ebdcff);
+      font: 700 .85rem ui-monospace, Consolas, monospace;
+    }
+    .site-menu nav {
+      position: absolute;
+      top: calc(100% + .6rem);
+      right: 0;
+      width: min(17rem, calc(100vw - 2rem));
+      display: grid;
+      gap: .25rem;
+      padding: .55rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: .85rem;
+      box-shadow: 0 10px 26px #49316b26;
+    }
+    .site-menu nav a { padding: .65rem .8rem; border-radius: .45rem; }
+    .site-menu nav a:hover { background: #f1e6ff; }
+    main { padding-top: clamp(1.4rem, 5vw, 3.75rem); }
+    .window {
+      border: 1px solid #cdb9e5;
+      border-radius: 1.3rem;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: 0 5px 0 #e2d4f4, 0 14px 30px #62448912;
+    }
+    .window-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .7rem;
+      padding: .7rem clamp(1rem, 3vw, 1.65rem);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(100deg, #ebdcff, #f9e0f0 56%, #dbedff);
+      color: var(--muted);
+      font: 700 .8rem ui-monospace, Consolas, monospace;
+    }
+    .window-lights { display: flex; gap: .35rem; }
+    .window-lights i {
+      width: .65rem;
+      height: .65rem;
+      border-radius: 50%;
+      border: 1px solid #9a7fbe;
+      background: #f6c3e5;
+    }
+    .window-lights i:nth-child(2) { background: #e8d5ff; }
+    .window-lights i:nth-child(3) { background: #c7e5ff; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 1rem;
+      min-height: 22rem;
+      padding: clamp(1.35rem, 6vw, 4.5rem);
+      background:
+        radial-gradient(ellipse at 85% 35%, #d9e8ff 0%, transparent 47%),
+        radial-gradient(ellipse at 70% 100%, #f6d7f0 0%, transparent 50%),
+        #fffaff;
+    }
+    .hero h1 {
+      max-width: 10ch;
+      margin: 0;
+      font: 900 clamp(2.55rem, 7vw, 6rem)/.96 "Arial Black", Arial, sans-serif;
+      letter-spacing: -.065em;
+      text-shadow: 2px 3px #ebd2ff;
+    }
+    .hero p {
+      display: inline-block;
+      margin: 1.35rem 0 0;
+      padding: .4rem .7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fffaff;
+      color: var(--muted);
+      font: 700 .85rem ui-monospace, Consolas, monospace;
+    }
+    .orbit {
+      position: relative;
+      justify-self: center;
+      display: grid;
+      place-items: center;
+      width: min(100%, 17rem);
+      aspect-ratio: 1;
+    }
+    .disc {
+      width: 72%;
+      aspect-ratio: 1;
+      border: 1px solid #b19bce;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, #fffaff 0 8%, #a98cc3 9%, #eee6fb 10% 17%, transparent 18%),
+        repeating-radial-gradient(circle, transparent 0 5px, #ffffff60 6px 7px),
+        conic-gradient(from 20deg, #fff, #e1cdff, #a9cefc, #fff, #ffcdea, #b9a2ef, #fff);
+      box-shadow: inset 0 0 12px #fff, 0 14px 26px #8c6bc33b;
+    }
+    .orbit::before {
+      content: "";
+      position: absolute;
+      width: 98%;
+      height: 42%;
+      border: 1px solid #9674c3;
+      border-radius: 50%;
+      transform: rotate(-29deg);
+    }
+    .spark {
+      position: absolute;
+      top: 7%;
+      right: 6%;
+      color: #7c55ae;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+    }
+    .spark.small { top: auto; right: auto; bottom: 10%; left: 8%; font-size: 1.55rem; }
+    .reflections {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.55rem;
+    }
+    .reflections article { display: flex; flex-direction: column; }
+    .reflections article:nth-child(2) .window-bar { background: linear-gradient(100deg, #f8dfed, #f1e2ff); }
+    .reflections article:nth-child(3) .window-bar { background: linear-gradient(100deg, #dceeff, #e9dfff); }
+    .card-body { padding: clamp(1.15rem, 2.3vw, 1.65rem); }
+    .card-body h2 {
+      margin: 0 0 .75rem;
+      font: 800 clamp(1.25rem, 2vw, 1.65rem)/1.18 Arial, sans-serif;
+      overflow-wrap: anywhere;
+    }
+    .card-body p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.8; }
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .5rem 1rem;
+      margin-block: 2.25rem 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    @media (max-width: 52rem) {
+      .reflections { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 34rem) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .orbit { width: 8rem; justify-self: end; margin-top: -.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header id="header" class="site-header">
+    <div class="shell topbar">
+      <a class="brand" href="index.html"><span aria-hidden="true">✦</span>Xiang Wang</a>
+      <details class="site-menu" id="menu">
+        <summary>Menu</summary>
+        <nav aria-label="Page sections">
+          <a href="#banner">Home</a>
+          <a href="#one">Creating Websites</a>
+          <a href="#two">Social Shaping</a>
+          <a href="#three">Platform Society</a>
+        </nav>
+      </details>
+    </div>
+  </header>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+  <main class="shell">
+    <section id="banner" class="window" aria-labelledby="page-title">
+      <div class="window-bar" aria-hidden="true">
+        <span>week_02.html</span>
+        <span class="window-lights"><i></i><i></i><i></i></span>
+      </div>
+      <div class="hero">
+        <div>
+          <h1 id="page-title">Week 2 Reflection</h1>
+          <p>By Xiang Wang</p>
+        </div>
+        <div class="orbit" aria-hidden="true">
+          <span class="disc"></span>
+          <span class="spark">✦</span>
+          <span class="spark small">✧</span>
+        </div>
+      </div>
+    </section>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Xiang Wang</a></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+    <div class="reflections" id="wrapper">
+      <article id="one" class="window">
+        <div class="window-bar" aria-hidden="true"><span>01 / 03</span><span>✧</span></div>
+        <div class="card-body">
+          <h2>Creating Websites</h2>
+          <p>This week's workshop systematically introduced several basic approaches to creating websites: using content management systems like CampusPress, building pages with HTML/CSS, and hosting publicly via GitHub Pages.</p>
+        </div>
+      </article>
+      <article id="two" class="window">
+        <div class="window-bar" aria-hidden="true"><span>02 / 03</span><span>✧</span></div>
+        <div class="card-body">
+          <h2>Social Shaping of Technology</h2>
+          <p>I did not write code from scratch, but instead used existing templates. This process deepened my understanding of the "social shaping of technology" from Week 1's lecture. Technologies do not emerge in a vacuum; seemingly basic HTML structures and CSS styles contain the assumptions and choices of their human designers. The lowered technical barrier allowed me to focus my energy on content and reflection.</p>
+        </div>
+      </article>
+      <article id="three" class="window">
+        <div class="window-bar" aria-hidden="true"><span>03 / 03</span><span>✧</span></div>
+        <div class="card-body">
+          <h2>Platform Society</h2>
+          <p>Connecting this to Week 2's discussions on platforms and algorithms, I realized that whether using CampusPress or GitHub, we are all situated within a "platform society." We are accustomed to seamlessly posting content on social media daily, yet rarely consider the infrastructure behind it. Building this website made me realize that seemingly natural digital experiences are supported by nested layers of architecture, protocols, and commercial relations.</p>
+        </div>
+      </article>
+    </div>
 
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="#banner">Home</a></li>
-								<li><a href="#one">Creating Websites</a></li>
-								<li><a href="#two">Social Shaping</a></li>
-								<li><a href="#three">Platform Society</a></li>
-							</ul>
-							<a href="#" class="close">Close</a>
-						</div>
-					</nav>
+    <footer id="footer">
+      <span>&copy; Xiang Wang. All rights reserved.</span>
+      <span>Design: <a href="https://html5up.net">HTML5 UP</a></span>
+    </footer>
+  </main>
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<div class="logo"><span class="icon fa-gem"></span></div>
-							<h2>Week 2 Reflection</h2>
-							<p>By Xiang Wang</p>
-						</div>
-					</section>
+  <script>
+    const menu = document.querySelector('#menu');
+    const summary = menu.querySelector('summary');
 
-				<!-- Wrapper (连续展示三个模块) -->
-					<section id="wrapper">
+    menu.querySelector('nav').addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        menu.open = false;
+        summary.focus({ preventScroll: true });
+      }
+    });
 
-						<!-- One: Creating Websites -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-									<div class="content">
-										<h2 class="major">Creating Websites</h2>
-										<p>This week's workshop systematically introduced several basic approaches to creating websites: using content management systems like CampusPress, building pages with HTML/CSS, and hosting publicly via GitHub Pages.</p>
-									</div>
-								</div>
-							</section>
+    document.addEventListener('click', (event) => {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
 
-						<!-- Two: Social Shaping -->
-							<section id="two" class="wrapper alt spotlight style2">
-								<div class="inner">
-									<div class="content">
-										<h2 class="major">Social Shaping of Technology</h2>
-										<p>I did not write code from scratch, but instead used existing templates. This process deepened my understanding of the "social shaping of technology" from Week 1's lecture. Technologies do not emerge in a vacuum; seemingly basic HTML structures and CSS styles contain the assumptions and choices of their human designers. The lowered technical barrier allowed me to focus my energy on content and reflection.</p>
-									</div>
-								</div>
-							</section>
-
-						<!-- Three: Platform Society -->
-							<section id="three" class="wrapper spotlight style3">
-								<div class="inner">
-									<div class="content">
-										<h2 class="major">Platform Society</h2>
-										<p>Connecting this to Week 2's discussions on platforms and algorithms, I realized that whether using CampusPress or GitHub, we are all situated within a "platform society." We are accustomed to seamlessly posting content on social media daily, yet rarely consider the infrastructure behind it. Building this website made me realize that seemingly natural digital experiences are supported by nested layers of architecture, protocols, and commercial relations.</p>
-									</div>
-								</div>
-							</section>
-
-					</section>
-
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<ul class="copyright">
-								<li>&copy; Xiang Wang. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary.focus();
+      }
+    });
+  </script>
+</body>
 </html>
