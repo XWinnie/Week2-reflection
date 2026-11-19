@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 5 Reflection - Xiang Wang</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fffcf1;
+      --ink: #243f63;
+      --rose: #a64162;
+      --line: #bcc7cb;
+      font-family: "Trebuchet MS", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e9edf4; color: var(--ink); }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--rose); outline-offset: 4px; }
+    .sheet {
+      width: min(74rem, calc(100% - 3rem));
+      margin: 1.5rem auto;
+      background: var(--paper);
+      border: 1px solid #b7c4d2;
+      box-shadow: 5px 6px 0 #d6dfeb;
+    }
+    .masthead {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: .85rem 1.25rem;
+      padding: 1rem clamp(1.25rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      color: var(--rose);
+      font: italic 700 1.35rem Georgia, serif;
+      text-decoration: none;
+    }
+    .masthead nav { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; }
+    .masthead nav a { font-size: .83rem; text-decoration-thickness: 1px; text-underline-offset: .25rem; }
+    .masthead nav a:hover, footer a:hover { color: var(--rose); }
+
+    .cover {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, .8fr);
+      align-items: center;
+      gap: 1.5rem;
+      min-height: 28rem;
+      padding: clamp(2.4rem, 6vw, 5rem) clamp(1.25rem, 6vw, 5rem);
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .cover::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      background-image: radial-gradient(circle, #6595bc 1.35px, transparent 1.55px);
+      background-size: 7px 7px;
+      mask-image: linear-gradient(136deg, transparent 29%, #0003 54%, #000 100%);
+    }
+    .cover h1 {
+      margin: 0;
+      font: 400 clamp(3.5rem, 9vw, 8.5rem)/.82 Georgia, serif;
+      letter-spacing: -.09em;
+    }
+    .cover h1 span {
+      display: block;
+      margin: .12em 0 0 .23em;
+      color: var(--rose);
+      font-style: italic;
+    }
+    .byline {
+      display: inline-block;
+      margin: 2rem 0 0 .3rem;
+      padding: .55rem 1rem;
+      border: 1px solid #b87e94;
+      background: #f6dce3;
+      color: #78314d;
+      transform: rotate(-4deg);
+    }
+    .collage { position: relative; width: min(100%, 19rem); height: 15rem; justify-self: center; }
+    .swatch {
+      position: absolute;
+      inset: 1rem 1.5rem 1.4rem 2.2rem;
+      border: 1px solid #b88099;
+      transform: rotate(12deg);
+      background: repeating-linear-gradient(90deg, #fae6eb 0 10px, #fff8ef 10px 20px);
+    }
+    .sketch {
+      position: absolute;
+      inset: 2.4rem 3rem 1.7rem 1.1rem;
+      transform: rotate(-10deg);
+      border: 1px solid #547da5;
+      background: #e4eff6;
+      box-shadow: 4px 5px 0 #31577c29;
+    }
+    .sketch::before {
+      display: block;
+      content: "● ● ●";
+      padding: .35rem .6rem;
+      border-bottom: 1px solid #7798b9;
+      font: .65rem "Courier New", monospace;
+      color: #426689;
+    }
+    .sketch::after {
+      display: grid;
+      place-items: center;
+      height: calc(100% - 1.65rem);
+      content: "< / >";
+      color: #34577d;
+      font: italic 700 clamp(2rem, 5vw, 4.5rem) Georgia, serif;
+    }
+    .tape {
+      position: absolute;
+      top: 1.65rem;
+      left: 22%;
+      width: 39%;
+      height: 1.4rem;
+      background: #f8e69fcf;
+      transform: rotate(-13deg);
+    }
+    .star { position: absolute; color: #fbe79d; -webkit-text-stroke: 1px #74531e; line-height: 1; }
+    .star-one { right: .1rem; top: .1rem; font-size: 3.65rem; transform: rotate(13deg); }
+    .star-two { bottom: .2rem; left: 0; font-size: 2.15rem; }
+
+    .notes { padding: 0 clamp(1.25rem, 6vw, 5rem); }
+    .notes article {
+      display: grid;
+      grid-template-columns: minmax(10rem, 1fr) minmax(0, 2fr);
+      gap: .9rem clamp(1rem, 4vw, 3.5rem);
+      padding-block: clamp(1.6rem, 4vw, 3.25rem);
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 1rem;
+    }
+    .notes h2 {
+      justify-self: start;
+      align-self: start;
+      margin: 0;
+      padding: .22em .38em;
+      color: #24415f;
+      background: #dcebf4;
+      box-shadow: 2px 2px 0 #a1b9cd;
+      transform: rotate(-2deg);
+      font: 400 clamp(1.65rem, 3vw, 2.45rem)/1.06 Georgia, serif;
+    }
+    #two h2 { color: #773650; background: #f4dce3; box-shadow: 2px 2px 0 #d5aaba; transform: rotate(1deg); }
+    #three h2 { background: #f7e8aa; box-shadow: 2px 2px 0 #c7af67; }
+    .notes p { max-width: 66ch; margin: 0; font-size: 1rem; line-height: 1.72; }
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .7rem 1rem;
+      padding: 1.3rem clamp(1.25rem, 6vw, 5rem);
+      font-size: .78rem;
+    }
+    @media (max-width: 44rem) {
+      .sheet { width: calc(100% - 1.5rem); margin-block: .75rem; }
+      .cover { grid-template-columns: 1fr; gap: 1rem; min-height: auto; }
+      .collage { width: min(68%, 15rem); height: 10rem; justify-self: end; }
+      .star-one { font-size: 2.75rem; }
+      .star-two { font-size: 1.65rem; }
+      .swatch { inset: .65rem 1rem 1rem 1.7rem; }
+      .sketch { inset: 1.25rem 2rem 1.1rem .8rem; }
+      .tape { top: .85rem; height: .9rem; }
+      .notes article { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 23rem) {
+      .cover h1 { font-size: 3rem; }
+      .masthead nav { gap: .5rem .7rem; }
+    }
+      .reflection-text p + p { margin-top: 1.25rem; }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="masthead">
+      <a class="brand" href="index.html">Xiang Wang</a>
+      <nav aria-label="Weekly reflections">
+        <a href="index.html">Week 5</a>
+        <a href="week4.html">Week 4</a>
+        <a href="week5.html">Week 5</a>
+        <a href="week6.html">Week 6</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="cover" id="banner" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">Week 5 <span>Reflection</span></h1>
+          <p class="byline">By Xiang Wang</p>
+        </div>
+        <div class="collage" aria-hidden="true">
+          <span class="swatch"></span>
+          <span class="sketch"></span>
+          <span class="tape"></span>
+          <span class="star star-one">✦</span>
+          <span class="star star-two">✧</span>
+        </div>
+      </section>
+
+      <div class="notes">
+        <article id="one">
+          <h2>Data Visualisation</h2>
+          <div class="reflection-text"><p>In Week 5, we explored how data can be organised and presented through visualisation. Building on our previous research topic, I considered how different categories, such as AI tools and usage scenarios, could be represented in charts.</p>
+<p>One thing I found interesting was how the way we organise data can influence the conclusions we draw from it. A chart may make information easier to understand, but it can also simplify complex experiences or leave out important details.</p>
+<p>This made me realise that data visualisation is not just about presenting numbers. It also involves making decisions about what information to highlight and how to communicate it effectively.</p></div>
+        </article>
+        <article id="two">
+          <h2>Screenshots and workshop evidence</h2>
+          <div><!-- Add workshop screenshots and captions here when available. --></div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <span>&copy; Xiang Wang. All rights reserved.</span>
+      <span>Design: <a href="https://html5up.net">HTML5 UP</a></span>
+    </footer>
+  </div>
+</body>
+</html>
