@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Week 2 Reflection - Xiang Wang</title>
+  <title>Digital Practice - Xiang Wang</title>
   <style>
     :root {
       color-scheme: light;
@@ -174,29 +174,45 @@
       .cover h1 { font-size: 3rem; }
       .masthead nav { gap: .5rem .7rem; }
     }
+  
+    .cover h1 { font-size: clamp(3.5rem, 8vw, 7.5rem); }
+    .week-section { padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 6vw, 5rem); scroll-margin-top: 1rem; border-top: 1px solid var(--line); }
+    .week-heading { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1.5rem; align-items: start; margin-bottom: 2rem; }
+    .week-heading > span { display: inline-block; justify-self: start; padding: .55rem .9rem; background: #f4dce3; border: 1px solid #d5aaba; transform: rotate(-3deg); font: italic 1.3rem Georgia, serif; }
+    .week-heading h2 { max-width: 24ch; margin: 0; font: 400 clamp(1.8rem, 3.5vw, 3rem)/1.13 Georgia, serif; color: var(--ink); }
+    .reading { max-width: 65ch; margin-left: 9.5rem; font-size: 1.05rem; line-height: 1.85; }
+    .reading p { margin: 0 0 1.3rem; }
+    .reading p:last-child { margin-bottom: 0; }
+    #week4 { background: #f1f6f7; }
+    #week5 .week-heading > span { background: #f7e8aa; border-color: #c7af67; }
+    #week6 { background: #fbf0f2; }
+    #week6 .week-heading > span { background: #dcebf4; border-color: #a1b9cd; }
+    .week-section .notes { padding: 0; }
+    .week-section .notes article { padding-block: 1.6rem; }
+    .week-section .notes article:last-child { border-bottom: 0; padding-bottom: 0; }
+    .week-section .notes h2 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+    @media (max-width: 44rem) {
+      .week-heading { grid-template-columns: 1fr; gap: 1rem; }
+      .reading { margin-left: 0; font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
   <div class="sheet">
     <header class="masthead">
       <a class="brand" href="#banner">Xiang Wang</a>
-      <nav aria-label="Reflection sections">
-        <a href="#one">Creating Websites</a>
-        <a href="#two">Social Shaping</a>
-        <a href="#three">Platform Society</a>
-      </nav>
-    <nav aria-label="Weekly reflections">
-        <a href="index.html">Week 2</a>
-        <a href="week4.html">Week 4</a>
-        <a href="week5.html">Week 5</a>
-        <a href="week6.html">Week 6</a>
+      <nav aria-label="Weekly reflections">
+        <a href="#week2">Week 2</a>
+        <a href="#week4">Week 4</a>
+        <a href="#week5">Week 5</a>
+        <a href="#week6">Week 6</a>
       </nav>
     </header>
 
     <main>
       <section class="cover" id="banner" aria-labelledby="page-title">
         <div>
-          <h1 id="page-title">Week 2 <span>Reflection</span></h1>
+          <h1 id="page-title">Digital <span>Practice</span></h1>
           <p class="byline">By Xiang Wang</p>
         </div>
         <div class="collage" aria-hidden="true">
@@ -208,7 +224,7 @@
         </div>
       </section>
 
-      <div class="notes">
+      <section class="week-section" id="week2"><div class="week-heading"><span>Week 2</span><h2>Creating Websites</h2></div><div class="notes">
         <article id="one">
           <h2>Creating Websites</h2>
           <p>This week's workshop systematically introduced several basic approaches to creating websites: using content management systems like CampusPress, building pages with HTML/CSS, and hosting publicly via GitHub Pages.</p>
@@ -221,8 +237,14 @@
           <h2>Platform Society</h2>
           <p>Connecting this to Week 2's discussions on platforms and algorithms, I realized that whether using CampusPress or GitHub, we are all situated within a "platform society." We are accustomed to seamlessly posting content on social media daily, yet rarely consider the infrastructure behind it. Building this website made me realize that seemingly natural digital experiences are supported by nested layers of architecture, protocols, and commercial relations.</p>
         </article>
-      </div>
-    </main>
+      </div></section><section class="week-section" id="week4"><div class="week-heading"><span>Week 4</span><h2>Research Design and Data Collection</h2></div><div class="reading"><p>In Week 4, our group explored how generative AI can help international students overcome language barriers in their studies. We discussed possible data sources, including social media platforms such as Xiaohongshu and Instagram, and considered how to organise the information into different categories.</p>
+<p>This activity made me realise that collecting data is not as straightforward as I initially thought. People's experiences with AI can be very different, and it is difficult to represent these experiences through simple categories. I also became more aware of ethical issues when using publicly available online content for research.</p>
+<p>Overall, this workshop helped me understand the importance of research design and the limitations of quantitative data.</p></div></section><section class="week-section" id="week5"><div class="week-heading"><span>Week 5</span><h2>Data Visualisation</h2></div><div class="reading"><p>In Week 5, we explored how data can be organised and presented through visualisation. Building on our previous research topic, I considered how different categories, such as AI tools and usage scenarios, could be represented in charts.</p>
+<p>One thing I found interesting was how the way we organise data can influence the conclusions we draw from it. A chart may make information easier to understand, but it can also simplify complex experiences or leave out important details.</p>
+<p>This made me realise that data visualisation is not just about presenting numbers. It also involves making decisions about what information to highlight and how to communicate it effectively.</p></div></section><section class="week-section" id="week6"><div class="week-heading"><span>Week 6</span><h2>Algorithmic Identity and Platform Data</h2></div><div class="reading"><p>In Week 6, I explored how social media platforms collect personal data and construct algorithmic identities. I initially examined Douyin's privacy and advertising settings before switching to Xiaohongshu, where I found more detailed information about my content preferences.</p>
+<p>Xiaohongshu categorised my interests into topics such as football, fashion, psychology and daily life. This made me think about whether these categories accurately represent who I am. I realised that online behaviour does not always reflect someone's genuine interests or identity.</p>
+<p>The workshop also introduced Sumpter's method of categorising social media posts, which raised questions about the limitations of using online content to understand people.</p></div></section>
+</main>
 
     <footer>
       <span>&copy; Xiang Wang. All rights reserved.</span>
